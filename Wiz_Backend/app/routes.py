@@ -307,10 +307,13 @@ def create_routes(app):
         db.session.add(user)
         db.session.commit()
 
+        token = jwt.encode({"username": user.username}, SECRET_KEY, algorithm="HS256")
+
         return jsonify({
             'user_id': user.user_id,
             'username': user.username,
-            'created_at': user.created_at
+            'created_at': user.created_at,
+            'token': token 
         }), 201
 
     # Create roles

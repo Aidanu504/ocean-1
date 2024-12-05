@@ -58,6 +58,11 @@ const SignupForm1 = () => {
                 JSON.stringify({ username: user, user_password: pwd }),
                 { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
             );
+
+            const { token } = response.data;  
+
+            localStorage.setItem("jwtToken", token);
+
             setSuccess(true);
             navigate('/dashboard');
         } catch (err) {
