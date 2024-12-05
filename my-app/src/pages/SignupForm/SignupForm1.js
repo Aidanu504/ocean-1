@@ -5,7 +5,7 @@ import styles from './SignupForm1.module.css';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[1@#$%]).{8,24}$/;
-const SIGNUP_URL = 'http://127.0.0.1:5000/api/v1/users';
+const SIGNUP_URL = 'https://ocean-1.onrender.com/api/v1/users';
 
 const SignupForm1 = () => {
     const userRef = useRef();
