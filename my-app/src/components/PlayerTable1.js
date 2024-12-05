@@ -29,11 +29,11 @@ export const PlayerTable1 = () => {
                 const username = decodedToken.username;
     
                 // Fetch user id by username
-                const userResponse = await axios.get(`http://localhost:5000/api/v1/user/${username}`);
+                const userResponse = await axios.get(`https://ocean-1.onrender.com/api/v1/user/${username}`);
                 const userId = userResponse.data.user_id;
     
                 // Fetch players by user id
-                const playerResponse = await axios.get(`http://localhost:5000/api/v1/players/${userId}`);
+                const playerResponse = await axios.get(`https://ocean-1.onrender.com/api/v1/players/${userId}`);
                 
                 console.log('API Response:', playerResponse.data);
     
@@ -56,7 +56,7 @@ export const PlayerTable1 = () => {
     const savePlayer = async (updatedPlayer) => {
         try {
             const response = await axios.put(
-                `http://localhost:5000/api/v1/playerupdate/${updatedPlayer.player_id}`,
+                `https://ocean-1.onrender.com/api/v1/playerupdate/${updatedPlayer.player_id}`,
                 updatedPlayer
             );
             if (response.status === 200) {
@@ -73,7 +73,7 @@ export const PlayerTable1 = () => {
     // Add a new player
     const addPlayer = async (newPlayer) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/newplayerform', newPlayer);
+            const response = await axios.post('https://ocean-1.onrender.com/api/v1/newplayerform', newPlayer);
             if (response.status === 201) {
                 setPlayers((prevPlayers) => [...prevPlayers, response.data]);
                 setIsModalOpen(false);
@@ -86,7 +86,7 @@ export const PlayerTable1 = () => {
     // Delete a player
     const deletePlayer = async (playerId) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/api/v1/playerdelete/${playerId}`); 
+            const response = await axios.delete(`https://ocean-1.onrender.com/api/v1/playerdelete/${playerId}`); 
 
             if (response.status === 200) {
                 setPlayers((prevPlayers) =>

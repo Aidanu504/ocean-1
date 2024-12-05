@@ -14,7 +14,7 @@ def create_routes(app):
     # GET endpoints
     # Get all users
     # Enable CORS for all routes and allow requests from http://localhost:3000
-    CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+    CORS(app, resources={r"/*": {"origins": "https://ocean-1-1.onrender.com"}})
     @app.route("/api/v1/users", methods = ["GET"])
     def get_users():
         """Retrieves all users in the database."""

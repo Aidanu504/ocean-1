@@ -6,7 +6,7 @@ import os
 
 app = create_app()
 
-CORS(app, supports_credentials=True, origins="http://localhost:3000")
+CORS(app, supports_credentials=True, origins="https://ocean-1-1.onrender.com")
 
 # run app with debug
 if __name__ == '__main__':
