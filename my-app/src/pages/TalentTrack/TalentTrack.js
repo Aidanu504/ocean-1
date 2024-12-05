@@ -4,6 +4,7 @@ import styles from './TalentTrack.module.css';
 
 function TalentTrack() {
   const navigate = useNavigate();  // Initialize navigate
+  localStorage.clear();
 
   // Navigation functions
   const goToLogin = () => {
