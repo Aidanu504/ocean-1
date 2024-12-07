@@ -13,7 +13,7 @@ const LoginForm1 = () => {
     const errRef = useRef();
 
     const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [pwd, setPwd] = useState(''); 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
