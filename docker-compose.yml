@@ -9,7 +9,6 @@ services:
       - "5000:5000"       
     environment:
       - DATABASE_URL=postgresql://postgres:Mavericks2024!@database-1.cfmcu4ekyg1w.us-east-2.rds.amazonaws.com:5432/TTdatabase
-      - FRONTEND_URL=
 
   frontend:
     build:
@@ -18,7 +17,6 @@ services:
     ports:
       - "3000:3000" 
     environment:
-      - REACT_APP_BACKEND_URL=
 
 volumes:
   db_data:
