@@ -13,7 +13,7 @@ export const PlayerTable1 = () => {
     const [isAddingPlayer, setIsAddingPlayer] = useState(false);
 
     const columns = useMemo(() => COLUMNS, []);
-    const BACKEND_URL = process.env.BACKEND_URL;
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     // get players based on user id
     useEffect(() => {
@@ -107,7 +107,7 @@ export const PlayerTable1 = () => {
                 stars: newPlayerData.stars || null,
             };
     
-            const response = await axios.post('${BACKEND_URL}/api/v1/newplayerform', newPlayer);
+            const response = await axios.post(`${BACKEND_URL}/api/v1/newplayerform`, newPlayer);
     
             if (response.status === 201) {
                 setPlayers((prevPlayers) => [...prevPlayers, response.data]);

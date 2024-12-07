@@ -5,8 +5,8 @@ import styles from './SignupForm1.module.css';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[1@#$%]).{8,24}$/;
-const BACKEND_URL = process.env.BACKEND_URL;
-const SIGNUP_URL = '${BACKEND_URL}/api/v1/users';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const SIGNUP_URL = `${BACKEND_URL}/api/v1/users`;
 
 const SignupForm1 = () => {
     const userRef = useRef();
