@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 app = create_app()
 
-frontend_url = os.getenv('FRONTEND_URL')
+frontend_url = os.environ.get('FRONTEND_URL')
 
 CORS(app, supports_credentials=True, origins=frontend_url)
 

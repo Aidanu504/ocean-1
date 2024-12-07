@@ -5,7 +5,8 @@ import styles from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const LOGIN_URL = `https://ocean-1.onrender.com/api/v1/login`;
+const LOGIN_URL = `${BACKEND_URL}/api/v1/login`;
+console.log(LOGIN_URL);
 
 const LoginForm1 = () => {
     const { setAuth } = useContext(AuthContext);
