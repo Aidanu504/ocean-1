@@ -10,7 +10,6 @@ import jwt
 import os
 import requests 
 
-load_dotenv()
 frontend_url = os.getenv('FRONTEND_URL')
 
 # def for creating routes in __init__.py file

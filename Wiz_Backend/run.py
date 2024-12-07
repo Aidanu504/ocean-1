@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 # create app
 
 app = create_app()
-load_dotenv()
 
 frontend_url = os.getenv('FRONTEND_URL')
 
