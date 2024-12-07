@@ -4,7 +4,7 @@ import axios from '../../api/axios';
 import styles from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = 'https://ocean-1.onrender.com';
 const LOGIN_URL = `${BACKEND_URL}/api/v1/login`;
 console.log(LOGIN_URL);
 
