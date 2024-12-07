@@ -5,16 +5,20 @@ from flask_cors import CORS
 from app.models import users, user_roles, user_emails, email_text, players, comments, roles
 from datetime import datetime
 from bcrypt import hashpw, gensalt, checkpw
+from dotenv import load_dotenv
 import jwt
 import os
 import requests 
+
+load_dotenv()
+frontend_url = os.getenv('FRONTEND_URL')
 
 # def for creating routes in __init__.py file
 def create_routes(app):
     # GET endpoints
     # Get all users
     # Enable CORS for all routes and allow requests from http://localhost:3000
-    CORS(app, resources={r"/*": {"origins": "https://ocean-1-1.onrender.com"}})
+    CORS(app, resources={r"/*": {"origins": frontend_url}})
     @app.route("/api/v1/users", methods = ["GET"])
     def get_users():
         """Retrieves all users in the database."""

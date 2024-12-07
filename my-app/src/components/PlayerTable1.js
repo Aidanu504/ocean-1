@@ -13,6 +13,7 @@ export const PlayerTable1 = () => {
     const [isAddingPlayer, setIsAddingPlayer] = useState(false);
 
     const columns = useMemo(() => COLUMNS, []);
+    const BACKEND_URL = process.env.BACKEND_URL;
 
     // get players based on user id
     useEffect(() => {
@@ -29,11 +30,11 @@ export const PlayerTable1 = () => {
                 const username = decodedToken.username;
     
                 // Fetch user id by username
-                const userResponse = await axios.get(`https://ocean-1.onrender.com/api/v1/user/${username}`);
+                const userResponse = await axios.get(`${BACKEND_URL}/api/v1/user/${username}`);
                 const userId = userResponse.data.user_id;
     
                 // Fetch players by user id
-                const playerResponse = await axios.get(`https://ocean-1.onrender.com/api/v1/players/${userId}`);
+                const playerResponse = await axios.get(`${BACKEND_URL}/api/v1/players/${userId}`);
                 
                 console.log('API Response:', playerResponse.data);
     
@@ -56,7 +57,7 @@ export const PlayerTable1 = () => {
     const savePlayer = async (updatedPlayer) => {
         try {
             const response = await axios.put(
-                `https://ocean-1.onrender.com/api/v1/playerupdate/${updatedPlayer.player_id}`,
+                `${BACKEND_URL}/api/v1/playerupdate/${updatedPlayer.player_id}`,
                 updatedPlayer
             );
             if (response.status === 200) {
@@ -70,23 +71,57 @@ export const PlayerTable1 = () => {
         }
     };
 
-    // Add a new player
-    const addPlayer = async (newPlayer) => {
+    const addPlayer = async (newPlayerData) => {
         try {
-            const response = await axios.post('https://ocean-1.onrender.com/api/v1/newplayerform', newPlayer);
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
+                console.error('No token found. User is not authenticated.');
+                return;
+            }
+    
+            // Decode JWT to get username and user_id
+            const decodedToken = jwt_decode(token);
+            const username = decodedToken.username;
+    
+            const userResponse = await axios.get(`${BACKEND_URL}/api/v1/user/${username}`);
+            const userId = userResponse.data.user_id;
+    
+            // Ensure all fields are sent properly
+            const newPlayer = {
+                user_id: userId,
+                source_email_id: newPlayerData.source_email_id || null,
+                first_name: newPlayerData.first_name || '',
+                last_name: newPlayerData.last_name || '',
+                address: newPlayerData.address || null,
+                grad_year: newPlayerData.grad_year || null,
+                gpa: newPlayerData.gpa || null,
+                player_position: newPlayerData.player_position || '',
+                high_school: newPlayerData.high_school || '',
+                high_school_coach_name: newPlayerData.high_school_coach_name || null,
+                high_school_coach_email: newPlayerData.high_school_coach_email || null,
+                club_team: newPlayerData.club_team || null,
+                club_team_coach_name: newPlayerData.club_team_coach_name || null,
+                club_team_coach_email: newPlayerData.club_team_coach_email || null,
+                parents_names: newPlayerData.parents_names || null,
+                parents_contacts: newPlayerData.parents_contacts || null,
+                stars: newPlayerData.stars || null,
+            };
+    
+            const response = await axios.post('${BACKEND_URL}/api/v1/newplayerform', newPlayer);
+    
             if (response.status === 201) {
                 setPlayers((prevPlayers) => [...prevPlayers, response.data]);
                 setIsModalOpen(false);
             }
         } catch (error) {
-            console.error('Error adding player:', error);
+            console.error('Error adding player:', error.response?.data || error.message);
         }
     };
 
     // Delete a player
     const deletePlayer = async (playerId) => {
         try {
-            const response = await axios.delete(`https://ocean-1.onrender.com/api/v1/playerdelete/${playerId}`); 
+            const response = await axios.delete(`${BACKEND_URL}/api/v1/playerdelete/${playerId}`); 
 
             if (response.status === 200) {
                 setPlayers((prevPlayers) =>
