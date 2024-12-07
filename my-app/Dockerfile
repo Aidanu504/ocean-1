@@ -9,6 +9,8 @@ RUN npm install
 # Copy the rest of the app
 COPY . .
 
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+
 # Build the React app
 RUN npm run build
 
