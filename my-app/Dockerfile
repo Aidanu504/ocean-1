@@ -6,6 +6,8 @@ WORKDIR /my-app
 COPY package.json package-lock.json ./
 RUN npm install
 
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+
 # Copy the rest of the app
 COPY . .
 
