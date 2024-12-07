@@ -9,7 +9,7 @@ RUN npm install
 # Copy the rest of the app
 COPY . .
 
-ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+ENV REACT_APP_BACKEND_URL=https://ocean-1.onrender.com
 
 # Build the React app
 RUN npm run build
