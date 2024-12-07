@@ -9,7 +9,7 @@ app = create_app()
 
 frontend_url = os.getenv('FRONTEND_URL')
 
-CORS(app, supports_credentials=True, origins='frontend_url')
+CORS(app, supports_credentials=True, origins=frontend_url)
 
 # run app with debug
 if __name__ == '__main__':
